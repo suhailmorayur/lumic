@@ -46,7 +46,7 @@ const ContactButtons = () => {
   return (
     <div className="fixed bottom-6 right-4 flex flex-col items-center gap-3 z-[9999]">
       <a
-        href="tel:+911234567890"
+        href="tel:+971529493286"
         className="w-12 h-12 flex items-center justify-center rounded-full bg-green-500 hover:bg-green-600 text-white shadow-md transition duration-300"
         title="Call Us"
       >
@@ -62,7 +62,7 @@ const ContactButtons = () => {
       </a>
 
       <a
-        href="https://wa.me/911234567890"
+        href="https://wa.me/971529493286"
         target="_blank"
         rel="noopener noreferrer"
         className="w-12 h-12 flex items-center justify-center rounded-full bg-green-600 hover:bg-green-700 text-white shadow-md transition duration-300"
