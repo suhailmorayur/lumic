@@ -151,27 +151,15 @@ const servicesList = [
   },
 ];
 
-const getDirection = (index) => {
-  const col = index % 3;
-  if (col === 0) return { x: -50, y: 0 }; // softer left
-  if (col === 1) return { x: 0, y: 50 };  // softer bottom
-  return { x: 50, y: 0 };                 // softer right
-};
-
 const Services = () => (
-  <motion.section
-    id="services"
-    className="py-20 px-4 bg-gray-100"
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, amount: 0.2 }}
-  >
+  <section id="services" className="py-20 px-4 bg-gray-100">
     <div className="max-w-6xl mx-auto text-center">
       <motion.h3
         className="text-4xl font-extrabold mb-4 text-gray-800"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
       >
         Our Services
       </motion.h3>
@@ -180,45 +168,35 @@ const Services = () => (
       </p>
 
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {servicesList.map((service, i) => {
-          const direction = getDirection(i);
-          return (
-            <motion.div
-              key={i}
-              className="relative h-64 rounded-2xl shadow-lg overflow-hidden group"
-              initial={{ opacity: 0, x: direction.x, y: direction.y }}
-              whileInView={{ opacity: 1, x: 0, y: 0 }}
-              transition={{
-                delay: i * 0.06,
-                duration: 0.7,
-                type: "spring",
-                stiffness: 80,
-                damping: 15,
-              }}
-              viewport={{ once: true, amount: 0.2 }}
-              whileHover={{ scale: 1.04 }}
-            >
-              {/* Background Image */}
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-110 group-hover:brightness-90"
-                style={{ backgroundImage: `url(${service.image})` }}
-              />
+        {servicesList.map((service, i) => (
+          <motion.div
+            key={i}
+            className="relative h-64 rounded-2xl shadow-lg overflow-hidden group"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: i * 0.1 }}
+            viewport={{ once: true }}
+          >
+            {/* Background Image */}
+            <div
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+              style={{ backgroundImage: `url(${service.image})` }}
+            />
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]" />
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
 
-              {/* Content */}
-              <div className="relative z-10 flex flex-col items-center justify-center text-center text-white h-full px-4">
-                <FaCameraRetro className="text-yellow-400 text-3xl mb-3" />
-                <h4 className="text-xl font-semibold mb-1">{service.title}</h4>
-                <p className="text-sm">Creative photography tailored to your vision.</p>
-              </div>
-            </motion.div>
-          );
-        })}
+            {/* Content */}
+            <div className="relative z-10 flex flex-col items-center justify-center text-center text-white h-full px-4">
+              <FaCameraRetro className="text-yellow-400 text-3xl mb-3" />
+              <h4 className="text-xl font-semibold mb-1">{service.title}</h4>
+              <p className="text-sm">Creative photography tailored to your vision.</p>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </div>
-  </motion.section>
+  </section>
 );
 
 export default Services;
